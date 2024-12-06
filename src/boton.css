@@ -1,0 +1,19 @@
+/* Inicio.css */
+.botonJugar {
+    position: absolute;
+    bottom: 5%;
+    width: 20%;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.2s ease;
+  }
+  
+  .botonJugar:hover {
+    transform: scale(1.1); /* Aumenta el tamaño al pasar el mouse */
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.6); /* Sombra más destacada */
+  }
+  
+  .botonJugar:active {
+    transform: scale(0.9); /* Reduce el tamaño al presionar */
+    box-shadow: 0 3px 8px rgba(255, 0, 0, 0.5); /* Sombra más pequeña */
+  }
+  

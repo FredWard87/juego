@@ -1,0 +1,261 @@
+/* Papeles.css */
+
+/* Contenedor principal */
+.papeles-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url('./assets/FONDOTÍTULO.png'); /* Aplica el fondo */
+  overflow: hidden; /* Oculta cualquier contenido fuera de la pantalla */
+  position: relative; /* Necesario para posicionar elementos absolutos dentro */
+  z-index: 0; /* Fondo general */
+}
+
+/* Botón de Reinicio Opcional */
+.reset-button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+  position: relative; /* Necesario para z-index */
+  z-index: 6; /* Superior a todo lo demás */
+}
+
+.reset-button:hover {
+  background-color: #0056b3;
+}
+
+/* Cuadros alineados horizontalmente */
+.cuadros {
+  display: flex;
+  gap: 15px; /* Espaciado entre cuadros */
+  position: relative;
+  z-index: 5; /* Encima de papeles pero debajo de fotos e imágenes */
+  flex-wrap: nowrap; /* Mantener en una sola fila */
+  max-width: 100%; /* Asegura que no exceda el contenedor */
+  justify-content: center;
+}
+
+.cuadro {
+  width: 60px; /* Tamaño de los cuadros */
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid #ccc; /* Opcional: agrega un borde para visualizar los cuadros */
+  border-radius: 4px; /* Opcional: bordes redondeados */
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo semi-transparente para los cuadros */
+  z-index: 2; /* Encima de papeles pero debajo de fotos e imágenes */
+}
+
+.cuadro img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Imagen de letra en el cuadro */
+.letra-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: relative; /* Necesario para z-index */
+  z-index: 5; /* Encima de imágenes y fotos */
+}
+
+/* Papel como zona de soltado */
+.papeles {
+  display: flex;
+  margin-top: 60px; /* Baja los papeles más */
+  position: relative;
+  z-index: 1; /* Encima del fondo pero debajo de cuadros, fotos e imágenes */
+  flex-wrap: wrap; /* Permite que los papeles se envuelvan en filas si es necesario */
+  justify-content: center;
+}
+
+.papel {
+  width: 300px; /* Tamaño de los papeles */
+  height: 420px;
+  border: none; /* Elimina el borde para transparencia completa */
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Para que assigned-image esté posicionado correctamente */
+  background-color: transparent; /* Fondo completamente transparente */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Añadir sombra para detalle */
+  overflow: hidden; /* Para que las imágenes asignadas no se salgan */
+  transition: border-color 0.3s, transform 0.3s;
+  z-index: 1; /* Encima del fondo pero debajo de cuadros, fotos e imágenes */
+}
+
+.papel:hover {
+  border-color: #888;
+  transform: scale(1.02);
+}
+
+.papel-offset {
+  margin-top: 180px; /* Baja el papel en total 180px (20px anteriores + 160px nuevos) */
+}
+
+/* Imagen base del papel */
+.papel .cuadro-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Mantiene la proporción de la imagen */
+}
+
+/* Imagen asignada en la esquina superior izquierda */
+.assigned-image {
+  position: absolute;
+  width: 100px; /* Tamaño reducido para asignadas */
+  height: auto;
+  pointer-events: none; /* Para que no interfiera con otros eventos */
+  /* Las posiciones top y left se establecen dinámicamente en línea */
+  z-index: 3; /* Encima de papeles pero debajo de letras */
+}
+
+/* Clase para asignadas en la esquina derecha */
+.assigned-image-right {
+  right: 10px; /* Posición a la derecha */
+  left: unset; /* Elimina la posición a la izquierda */
+}
+
+/* Fotos y otras imágenes decorativas */
+.decorative-images {
+  position: absolute;
+  /* Las posiciones top y left se establecerán dinámicamente desde el componente */
+  transform: translate(-50%, -50%); /* Centra el contenedor en las coordenadas top y left */
+  width: 300px; /* Aumentado para acomodar más imágenes decorativas */
+  height: 200px;
+  z-index: 4; /* Encima de cuadros pero debajo de letras */
+  flex-wrap: wrap;
+  gap: 15px;
+  background: transparent; /* Fondo completamente transparente */
+}
+
+/* Imagen decorativa (fotos y otras imágenes) */
+.decorative {
+  width: 100px; /* Tamaño fijo */
+  cursor: grab; /* Indica que se puede arrastrar */
+  transition: transform 0.2s;
+  z-index: 4; /* Encima de cuadros pero debajo de letras */
+}
+
+.decorative:hover {
+  transform: scale(1.5); /* Máximo escalado para evitar pixelación */
+}
+
+/* Letras del alfabeto ruso */
+.letter {
+  position: absolute;
+  width: 50px; /* Tamaño fijo */
+  height: 50px;
+  object-fit: contain;
+  z-index: 5; /* Encima de todo */
+  cursor: grab; /* Indica que se puede arrastrar */
+  transition: transform 0.2s;
+}
+
+.letter:hover {
+  transform: scale(1.1); /* Máximo escalado para evitar pixelación */
+}
+
+/* Efectos de hover para mejorar la interactividad */
+.cuadro:hover,
+.papel:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+.decorative-images img.decorative:hover {
+  transform: scale(1.5); /* Máximo escalado para evitar pixelación */
+  transition: transform 0.3s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .decorative-images {
+    width: 200px;
+    height: 200px;
+    gap: 10px;
+    z-index: 4;
+  }
+
+  .decorative {
+    width: 100px;
+    z-index: 4;
+  }
+
+  .cuadros {
+    gap: 10px;
+    max-width: 600px;
+    flex-wrap: nowrap; /* Mantener en una sola fila */
+    z-index: 2;
+  }
+
+  .cuadro {
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+  }
+
+  .papeles {
+    gap: 10px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+    max-width: 800px;
+    z-index: 1;
+  }
+
+  .papel {
+    width: 250px;
+    height: 280px;
+    z-index: 1;
+  }
+
+  .assigned-image {
+    width: 35px;
+    top: 5px;
+    left: 5px;
+    z-index: 3;
+  }
+
+  .assigned-image-right {
+    right: 5px;
+    left: unset;
+    z-index: 3;
+  }
+
+  .letra-image {
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+  }
+
+  .letra {
+    font-size: 20px;
+  }
+
+  .letter {
+    width: 40px;
+    height: 40px;
+    z-index: 5;
+  }
+
+  /* Ajustar botón de reinicio en pantallas pequeñas */
+  .reset-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    z-index: 6;
+  }
+}
